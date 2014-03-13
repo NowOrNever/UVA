@@ -1,0 +1,44 @@
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+struct Point {
+    int x, y;
+    bool operator < (const Point &a) const {
+        return x < a.x || (x == a.x && y < a.y);
+    }
+};
+
+multiset<Point> S;
+multiset<Point>::iterator it;
+
+int main()
+{
+    int t; scanf("%d", &t);
+    for(int ct = 1; ct <= t; ct ++) {
+        int n;
+        S.clear();
+        if(ct > 1) printf("\n");
+        printf("Case #%d:\n", ct);
+        scanf("%d", &n);
+        while(n --) {
+            int a, b;
+            scanf("%d%d", &a, &b);
+            Point P; P.x = a; P.y = b;
+            it = S.lower_bound(P);
+            if(it == S.begin() || (--it)->y > b) {
+                S.insert(P);
+                it = S.upper_bound(P);
+                while(it != S.end() && it->y >= b) S.erase(it ++);
+            }
+            printf("%d\n", S.size());
+        }
+
+    }
+    return 0;
+}
+
