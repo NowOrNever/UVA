@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	int i,j,n,l,max;
+	char s1[100][100];
+	int a[100];
+	i=0;
+	max=0;
+	while(gets(s1[i]))
+	{
+		l=strlen(s1[i]);
+		a[i]=l;
+		if(l>=max)
+		{
+			max=l;
+		}
+		i+=1;
+	}
+	n=i;
+	for(i=0;i<=max-1;i++)
+	{
+		for(j=n-1;j>=0;j--)
+		{
+			if(i<=a[j]-1)
+			{
+				printf("%c",s1[j][i]);
+			}else
+			{
+				printf(" ");
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}
