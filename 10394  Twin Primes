@@ -1,0 +1,36 @@
+#include<cstdio>
+#include<cmath>
+#define N 20000000+5
+int a[100005],prime[N];
+void deal()
+{
+	int i,j;
+	for(i=2;i<=N;i++)
+		prime[i]=1;
+	for(i=2;i<=sqrt(N);i++)
+	{
+		if(prime[i])
+			for(j=i+i;j<=N;j+=i)
+				prime[j]=0;
+	}
+}
+void judge() 
+{
+	int i,j;
+	for(i=3,j=1;;i+=2)
+	{
+		if(prime[i]==prime[i+2]&&prime[i]==1)
+			a[j++]=i;
+		if(j>100000)
+			break;
+	}
+}
+int main()
+{
+	int n;
+	deal();
+	judge();
+	while(~scanf("%d",&n))
+		printf("(%d, %d)\n",a[n],a[n]+2);
+	return 0;
+}
