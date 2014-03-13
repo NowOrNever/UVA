@@ -1,0 +1,16 @@
+#include<cstdio>
+#define N 100000
+
+int main()
+{
+	char a[N],b[N];
+	int i,j;
+	while(scanf("%s%s",&a,&b)!= EOF)
+	{
+		for(i = 0,j = 0;b[i] != '\0'&&a[j] != '\0';i++)
+		if(a[j] == b[i])    j++;
+		if(a[j] =='\0')   printf("Yes\n");
+		else printf("No\n");
+	}
+	return 0;
+}
