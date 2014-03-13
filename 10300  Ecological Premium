@@ -1,0 +1,21 @@
+#include<cstdio>
+#include<cmath>
+
+int main()
+{
+	long n;
+	scanf("%ld",&n);
+	for(long i=1;i<=n;i++)
+	{
+		long animal,size,f,ef,ans = 0;
+		scanf("%ld",&f);
+		for(long j=1;j<=f;j++)
+		{
+			scanf("%ld %ld %ld",&size,&animal,&ef);
+			ans += size*ef;
+		}
+		printf("%ld\n",ans);
+	}
+	
+	return 0;
+}
