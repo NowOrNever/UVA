@@ -1,0 +1,40 @@
+#include<cstdio>
+
+int main()
+{
+	int max,i,j,a,b,c;
+	while(scanf("%d %d",&a,&b)==2)
+	{
+		max = 0;
+		if(a>b)
+		{
+			printf("%d %d ",a,b);
+			int temp = a;
+			a = b;
+			b = temp;
+		}
+		else printf("%d %d ",a,b);
+		for(i = a; i <= b; i++)
+		{
+			a = i;
+			j = 1;
+			while(a!=1)
+			{
+				if(a % 2 ==0)
+				{
+					a /=2;
+				}
+				else
+				{
+					a = 3*a + 1;
+				}
+				j++;
+			}
+			if(j > max)
+			max = j;
+		}
+		printf("%d\n",max);
+	}
+	
+	return 0;
+} 
