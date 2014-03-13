@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+long long mi(int n)
+{
+	long long ans=1,a=2;
+	while(n)
+	{
+		if(n%2) ans=(ans*a)%1000000007;
+		n/=2;
+		a=(a%1000000007*a%1000000007)%1000000007;
+	}
+	return ans;
+}
+int main()
+{
+	long long t,n,count,i,tt=0;
+	cin>>t;
+	while(t--)
+	{
+		cin>>n;
+		count=(n%1000000007)*mi(n-1);
+		cout<<"Case #"<<++tt<<": "<<count%1000000007<<endl;
+	}
+	return 0;
+}
