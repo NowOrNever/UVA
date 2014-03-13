@@ -1,0 +1,43 @@
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#define MAXN 10
+
+const int N = 8;
+int val[MAXN][MAXN], max, ans;
+bool vis[MAXN][MAXN];
+
+void dfs( int cur)
+{
+    for( int i = 0; i < N; i ++)
+    {
+        if( !vis[0][i] && !vis[1][cur + i] && !vis[3][cur - i + N - 1])
+        {
+            ans += val[cur][i];
+            vis[0][i] = vis[1][ cur + i] = vis[3][cur - i + N - 1] = true;
+            if( cur == N - 1 && ans > max)
+                max = ans;
+            else
+                dfs( cur + 1);
+            ans -= val[cur][i];
+            vis[0][i] = vis[1][ cur + i] = vis[3][cur - i + N - 1] = false;
+        }
+    }
+}
+
+int main()
+{
+    int T;
+    scanf( "%d", &T);
+    while( T --)
+    {
+        for( int i = 0; i < N; i ++)
+            for( int j = 0; j < N; j ++)
+                scanf( "%d", &val[i][j]);
+        memset( vis, false, sizeof vis);
+        max = ans = 0;
+        dfs( 0);
+        printf( "%5d\n", max);
+    }
+    return 0;
+}
