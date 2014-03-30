@@ -1,0 +1,35 @@
+#include<iostream>
+#include<cstdio>
+
+using namespace std;
+const long long maxn=3007;
+
+int Abs(int x){
+	return (x > 0 ? x : -x);
+}
+
+bool jolly(bool a[],long n)
+{
+    for(long i=1;i<=n-1;i++)
+      if(!a[i]) return false;
+    return true;
+}
+
+int main()
+{
+	 long n,a[maxn];
+    bool vis[maxn];
+    while(~scanf("%ld",&n))
+    {
+       for(long i=1;i<=n;i++) scanf("%ld",&a[i]);
+       for(long i=1;i<=n;i++) vis[i]=false;
+       for(long i=1;i<=n-1;i++)
+       {
+          long t=Abs(a[i+1]-a[i]);
+          if(t<=n-1) vis[t]=true;
+       }
+       if(jolly(vis,n)) printf("Jolly\n");
+       else printf("Not jolly\n");
+    }
+return 0;
+}
